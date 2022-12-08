@@ -1,4 +1,4 @@
-い// N10veru
+// N10veru
 void setup() {
  pinMode (LED_PIN, OUTPUT);
  pinMode (M1_D_PIN, OUTPUT);
