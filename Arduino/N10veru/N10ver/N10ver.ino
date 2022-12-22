@@ -12,13 +12,15 @@ const int S_OL_PIN = 10;  //Sensor OuterL Pin
 const int SPEED_H = 255;
 const int SPEED_M = 128;  // speed check
 const int SPEED_Z   = 0;
-const int SPEED_ZZ  = 50;   // near zero
+const int SPEED_ZZ  = 128;   // near zero
 const int FWD       = HIGH; //LOW  if it go reverse 
 const int BWD       = LOW;  //HIGH if it goes reverse
 const int MOTOR_L   = 1;    //Motor selection parameter Left
 const int MOTOR_R   = 0;    //Motor selection parameter Right
 const int BLACK   = LOW;
 const int WHITE  = HIGH;
+
+const int PB_PIN = 7;
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const int DIRECT = 1;  // CHECK !!!!!!!!!!!
@@ -45,7 +47,7 @@ int getPB () {
  oldI = i;
  delay (KEY_KEEP);
  keyVolt = 0;
- // keyVolt = analogRead(PB_PIN);
+ keyVolt = analogRead(PB_PIN);
  for (i = 1; i < 6; i++) {
  if (keyVolt < KEY_SENS_V[i]) {
  break;
