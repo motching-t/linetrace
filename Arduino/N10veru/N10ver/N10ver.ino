@@ -9,8 +9,8 @@ const int S_CR_PIN  =11;  //Sensor CenterR Pin
 const int S_CL_PIN  =12;  //Sensor CenterL Pin
 const int S_OR_PIN  = 9;  //Sensor OuterR Pin
 const int S_OL_PIN = 10;  //Sensor OuterL Pin
-const int SPEED_H = 255;
-const int SPEED_M = 100;
+const int SPEED_H = 255;  
+const int SPEED_M = 100;  // カーブのときの内輪速度
 const int SPEED_Z   = 0;
 const int FWD       = HIGH; //LOW  if it go reverse 
 const int BWD       = LOW;  //HIGH if it goes reverse
@@ -18,11 +18,13 @@ const int MOTOR_L   = 1;    //Motor selection parameter Left
 const int MOTOR_R   = 0;    //Motor selection parameter Right
 const int BLACK   = LOW;
 const int WHITE  = HIGH;
+const int PB_PIB = 7;   //  スイッチのアナログリード
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-const int DIRECT = 1;  // CHECK !!!!!!!!!!!
+// フラグ用途の数に定数を割り当てる
+const int DIRECT = 1;  
 const int LOOP = 2;
 
+// 変数宣言してないものをする
 int initialB;
 int lineP;
 int modeTRACK;
@@ -44,7 +46,7 @@ int getPB () {
  oldI = i;
  delay (KEY_KEEP);
  keyVolt = 0;
- // keyVolt = analogRead(PB_PIN);
+ keyVolt = analogRead(PB_PIN);
  for (i = 1; i < 6; i++) {
  if (keyVolt < KEY_SENS_V[i]) {
  break;
