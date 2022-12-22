@@ -10,8 +10,9 @@ const int S_CL_PIN  =12;  //Sensor CenterL Pin
 const int S_OR_PIN  = 9;  //Sensor OuterR Pin
 const int S_OL_PIN = 10;  //Sensor OuterL Pin
 const int SPEED_H = 255;
-const int SPEED_M = 100;
+const int SPEED_M = 128;  // speed check
 const int SPEED_Z   = 0;
+const int SPEED_ZZ  = 50;   // near zero
 const int FWD       = HIGH; //LOW  if it go reverse 
 const int BWD       = LOW;  //HIGH if it goes reverse
 const int MOTOR_L   = 1;    //Motor selection parameter Left
@@ -80,7 +81,7 @@ void moveM (int motor, int dir, int speed) {
  (oldM_speed[motor] != SPEED_Z) &&
  (speed != SPEED_Z)) { // dir change then pause
  analogWrite (M_S_PIN[motor], SPEED_Z);
- delay (100);
+ delay (50);  // delay CHECK!
  }
  digitalWrite (M_D_PIN[motor], dir);
  analogWrite (M_S_PIN[motor], speed) ;
@@ -153,25 +154,25 @@ void loop() {
  // WHITE – BLACK -> TURN TO BLACK
  if (readSCR==WHITE && readSCL==BLACK) {
  digitalWrite (LED_PIN, LOW);
- moveM (MOTOR_L,FWD,SPEED_Z);
+ moveM (MOTOR_L,FWD,SPEED_ZZ);
  moveM (MOTOR_R,FWD,SPEED_H);
  }
  // BLACK - WHITE -> TURN TO BLACK
  if (readSCR==BLACK && readSCL==WHITE) {
  digitalWrite (LED_PIN, LOW);
- moveM (MOTOR_R,FWD,SPEED_Z);
+ moveM (MOTOR_R,FWD,SPEED_ZZ);
  moveM (MOTOR_L,FWD,SPEED_H);
  }
  // BLACK – BLACK -> TURN as modeTRACK
  if (readSCR==BLACK && readSCL==BLACK){
  digitalWrite (LED_PIN, HIGH);
  if (modeTRACK == M_RH) {
- moveM (MOTOR_R,FWD,SPEED_Z);
+ moveM (MOTOR_R,FWD,SPEED_ZZ);
  moveM (MOTOR_L,FWD,SPEED_H);
  delay (10);
  }
  if (modeTRACK == M_LH) {
- moveM (MOTOR_L,FWD,SPEED_Z);
+ moveM (MOTOR_L,FWD,SPEED_ZZ);
  moveM (MOTOR_R,FWD,SPEED_H);
  delay (10);
  }
