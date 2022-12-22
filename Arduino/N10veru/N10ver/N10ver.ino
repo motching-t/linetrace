@@ -171,12 +171,12 @@ void loop() {
  if (modeTRACK == M_RH) {
  moveM (MOTOR_R,FWD,SPEED_ZZ);
  moveM (MOTOR_L,FWD,SPEED_H);
- delay (10);
+ delay (1);
  }
  if (modeTRACK == M_LH) {
  moveM (MOTOR_L,FWD,SPEED_ZZ);
  moveM (MOTOR_R,FWD,SPEED_H);
- delay (10);
+ delay (1);
  }
  }
  }
